@@ -5,8 +5,9 @@
     <title>K-Corona.com</title>
     <style>
                 #topMenu {
-                        height: 60px;
-                        width: 1100px;
+                  		position: fixed;
+                        height: 150px;
+                        width: 1500px;
 
                 }
 
@@ -18,7 +19,6 @@
                         line-height: 50px;
                         vertical-align: middle;
                         text-align: center;
-
                 }
 
                 #topMenu .menuLink {
@@ -30,6 +30,8 @@
                         font-family: "TmonMonsori";
 
                 }
+
+
                 #topMenu .menuLink:hover {
                         color: #FFB70F;
                         background-color: #4d4d4d;
@@ -38,11 +40,13 @@
 
     </style>
 </head>
-<body>
-<p>
-    <img src="logo_main.png" alt="" width="200px" height="100px">
-    <nav id="topMenu">
+
+<body style="margin:0px; padding:0px">
+
+
+    <nav id="topMenu" style="margin:0px; padding:0px">
 		<ul style="display:inline">
+			<li><img src="logo_main.png" alt="" width="250px" height="100px" align="center" style="margin:0px"></li>
 			<li ><a class="menuLink" href="FrameMain.html" target="frame_target">메인</a></li>
 			<li>|</li>
 			<li><a class="menuLink" href="FrameWorld.html" target="frame_target">전세계 현황</a></li>
@@ -55,12 +59,14 @@
 		</ul>
 	</nav>
 
-</p>
 
 
 
-<iframe src="FrameMain.html" name = "frame_target" style="width:1000px; height:50000px; border:none; ">
+<br><br><br><br><br><br>
 
+
+
+<iframe src="FrameMain.html" name = "frame_target" style="width:1180px; height:5000px; border:none; ">
 </iframe>
 
 </body>

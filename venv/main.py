@@ -53,6 +53,9 @@ for row in rows:
         corona_list.append(test_data)
 
 
+print(corona_list[7])
+print(corona_K_list[0])
+print(corona_world_list[2])
 
 # corona_list
 # 0 => 국가

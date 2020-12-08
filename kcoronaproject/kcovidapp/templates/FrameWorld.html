@@ -1,98 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <style>
-                #topMenu {
-                  		position: fixed;
-                        height: 150px;
-                        width: 1500px;
+{% extends 'base.html' %}
 
-                }
+{% block content %}
 
-                #topMenu ul li {
-                        list-style: none;
-                        color: white;
-                        background-color: #FFB70F;
-                        float: left;
-                        line-height: 50px;
-                        vertical-align: middle;
-                        text-align: center;
-                }
-
-                #topMenu .menuLink {
-                        text-decoration:none;
-                        color: #002053;
-                        display: block;
-                        width: 180px;
-                        font-size: 24px;
-                        font-family: "TmonMonsori";
-
-                }
-
-
-                #topMenu .menuLink:hover {
-                        color: #FFB70F;
-                        background-color: #4d4d4d;
-
-                }
-
-                .red_bold{
-                	font-family: "나눔스퀘어라운드 ExtraBold", "맑은 고딕";
-                	font-size: 144px;
-                	color: red;
-                	text-align: center;
-
-               }
-
-               .black_bold{
-                	font-family: "나눔스퀘어라운드 ExtraBold", "맑은 고딕";
-                	font-size: 144px;
-               }
-
-               .black_normal{
-                	font-family: "나눔스퀘어라운드", "맑은 고딕";
-                	font-size: 72px;
-                	 	text-align: center;
-               }
-
-                 .black_light{
-                	font-family: "나눔스퀘어라운드", "맑은 고딕";
-                	font-size: 24px;
-                	 	text-align: center;
-               }
-
-    </style>
-</head>
-<body style="margin:0px; padding:0px">
-
-        <nav id="topMenu" style="margin:0px; padding:0px; z-index:1;" >
-		<ul style="display:inline">
-                <li><img src="/static/img/logo_main.png" alt="" width="250px" height="100px" align="center" style="margin:0px"></li>
-			<li ><a class="menuLink" href="{% url 'home' %}">메인</a></li>
-			<li>|</li>
-                        <li ><a class="menuLink" href="{% url 'board' %}">게시판</a></li>
-			<li>|</li>
-			<li><a class="menuLink" href="{% url 'world' %}">전세계 현황</a></li>
-			<li>|</li>
-			<li><a class="menuLink" href="{% url 'korea' %}">대한민국 현황</a></li>
-			<li>|</li>
-			<li><a class="menuLink" href="{% url 'protect' %}" >예방 방법</a></li>
-			<li>|</li>
-			<li><a class="menuLink" href="{% url 'site' %}">관련 사이트</a></li>
-		</ul>
-
-	</nav>
-    <br>
-<!--    <iframe src = "https://www.worldometers.info/coronavirus/" width="1500px" height="5000px"></iframe>-->
-
-
-
-<!--		<span class = "01">{{corona_world_list}}</span>-->
-
-<!--    for title in titles:-->
-<!--        corona_world_list.append(title.text)-->
-		<p class = "black_normal">총 확진자</p>
+<br>
+<div class="container">
+<p class = "black_normal">총 확진자</p>
 		<p class="red_bold">{{totalCase}}</p>
 
 		<p class = "black_light">자세한 정보는 아래를 참고하세요.</p>
@@ -108,9 +20,5 @@
         -webkit-transform-origin: 0 0; ">
 </iframe>
 
-
-
-
-
-</body>
-</html>
+</div>
+{% endblock %}

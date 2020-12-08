@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-
+#<int:blog_id>: 각 게시물의 고유번호
 urlpatterns = [
     path('',views.home, name='home'),
     path('FrameKorea/',views.korea, name='korea'),

@@ -16,19 +16,18 @@ def home(request):
 
 
 def korea(request):
-    corona_K_list = list()
-    # 한국
+    corona_K_list = list()  # 빈 리스트 생성
     r = requests.get('https://www.worldometers.info/coronavirus/country/south-korea/')
-    html = r.text
+    html = r.text # 지정한 링크에서 html 소스코드를 가져옴
 
-    soup = BeautifulSoup(html, 'html.parser')
+    soup = BeautifulSoup(html, 'html.parser') # BeautifulSoup
 
     titles = soup.select('.maincounter-number > span')
 
     for title in titles:
         corona_K_list.append(title.text)
-
     totalCase = corona_K_list[0]
+
     return render(request, 'FrameKorea.html', {'totalCase': totalCase})
 
 
@@ -94,13 +93,15 @@ def world(request):
 def Iframe(request):
     return render(request, 'Iframe.html')
 
-
+#게시판 메인
 def board(request):
+    #id를 역순으로 정렬함
     blogs = Blog.objects.order_by('-id')
     return render(request, 'BulletinBoard.html', {'blogs': blogs})
 
-
+#게시판 세부
 def detail(request, blog_id):
+    # get_object_or_404에 사용할 모델인 Blog와 검색 조건인 blog_id, blog_id는 장고가 부여하는 고유번호, 조건에 맞는게 없으면 http404 익셉션
     blog_detail = get_object_or_404(Blog, pk=blog_id)
     return render(request, 'BoardDetail.html', {'blog': blog_detail})
 
@@ -108,20 +109,20 @@ def detail(request, blog_id):
 def write(request):
     return render(request, 'BoardWrite.html')
 
-
+#글 저장
 def postboard(request):
     blog = Blog()
     blog.title = request.GET['title']
     blog.body = request.GET['body']
-    blog.pub_date = timezone.datetime.now()
+    blog.pub_date = timezone.datetime.now()#글쓴 시간 자동저장
     blog.save()
-    return redirect('/kcovidapp/BoardDetail/' + str(blog.id))
+    return redirect('/kcovidapp/BoardDetail/' + str(blog.id)) #쓴 글 페이지로 바로 이동
 
-
+#글 수정
 def update(request, blog_id):
     blog = Blog.objects.get(id=blog_id)
 
-    if request.method == 'POST':
+    if request.method == 'POST': #POST방식이면 데이터를 받아 검증하고 성공시 저장, get방식이면 update.html로 이동
         form = BlogUpdate(request.POST)
         if form.is_valid():
             blog.title = form.cleaned_data['title']
@@ -134,21 +135,21 @@ def update(request, blog_id):
 
         return render(request, 'update.html', {'form': form})
 
-
+#삭제
 def delete(request, blog_id):
     blog = Blog.objects.get(id=blog_id)
     blog.delete()
     return redirect('/kcovidapp/BulletinBoard/')
 
-
+#게시물 검색
 def search(request):
-    blogs = Blog.objects.all().order_by('-id')
+    blogs = Blog.objects.all().order_by('-id') #모든객체를 역순으로 담음
 
-    q = request.POST.get('q', "")
+    s = request.POST.get('s', "") #s에 s의이름으로 넘어온것을 담음
 
-    if q:
-        blogs = blogs.filter(title__icontains=q)
-        return render(request, 'search.html', {'blogs': blogs, 'q': q})
+    if site:
+        blogs = blogs.filter(title__icontains=s) #s와 비교 
+        return render(request, 'search.html', {'blogs': blogs, 's': s}) #같으면 search.html에 blogs와 s를 넘겨줌
 
     else:
-        return render(request, 'search.html')
+        return render(request, 'search.html') #아니면 search.html 리턴

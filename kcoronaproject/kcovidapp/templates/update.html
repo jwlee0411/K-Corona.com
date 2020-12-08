@@ -5,8 +5,8 @@
 
 <br>
 <div class="container">
-	<form method="POST">
-	  {% csrf_token %}
+	<form method="POST"> <!--POST 방식으로 전송,CSRF 공격을 방지하기 위한 {% csrf_token %}사용  -->
+	  {% csrf_token %} 
 	  <table>
 		{{form.as_table}}
 	  </table>
